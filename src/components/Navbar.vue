@@ -8,8 +8,6 @@ const router = useRouter();
 const { state, logout } = useAuthStore();
 const open = ref(false);
 
-const isAdmin = computed(() => state.user?.role === "admin");
-
 const initials = computed(() => {
   if (!state.user) return "";
   return state.user.name
@@ -28,8 +26,13 @@ const links = [
   { to: "/about", label: "About" },
 ];
 
+function closeMenu() {
+  open.value = false;
+}
+
 function handleLogout() {
   logout();
+  closeMenu();
   router.push("/login");
 }
 </script>
@@ -37,7 +40,7 @@ function handleLogout() {
 <template>
   <header class="navbar">
     <div class="container navbar__inner">
-      <router-link to="/" class="brand">
+      <router-link to="/" class="brand" @click="closeMenu">
         <span class="brand__badge">ខ្មែរ</span>
         <span class="brand__text">
           <span class="brand__word">Khmer Food</span>
@@ -45,44 +48,74 @@ function handleLogout() {
         </span>
       </router-link>
 
-      <nav class="links" :class="{ 'links--open': open }">
+      <nav class="links links--desktop">
         <router-link
           v-for="link in links"
           :key="link.to"
           :to="link.to"
           class="links__item"
           :class="{ 'links__item--active': route.path === link.to }"
-          @click="open = false"
         >
           {{ link.label }}
         </router-link>
       </nav>
 
-      <div class="account">
+      <div class="account account--desktop">
         <template v-if="state.user">
-          <router-link v-if="state.user" to="/admin" class="admin-chip"
-            >Admin</router-link
-          >
+          <router-link to="/admin" class="admin-chip">Admin</router-link>
           <span class="account__avatar">{{ initials }}</span>
           <span class="account__name">{{ state.user.name }}</span>
           <button class="account__logout" @click="handleLogout">Log Out</button>
         </template>
       </div>
 
-      <button class="menu-btn" @click="open = !open" aria-label="Toggle menu">
+      <button
+        class="menu-btn"
+        @click="open = !open"
+        :aria-expanded="open"
+        aria-label="Toggle menu"
+      >
         <span></span><span></span><span></span>
       </button>
     </div>
-    <div class="navbar__pattern"></div>
+
+    <div class="mobile-menu" :class="{ 'mobile-menu--open': open }">
+      <nav class="mobile-menu__links">
+        <router-link
+          v-for="link in links"
+          :key="link.to"
+          :to="link.to"
+          class="mobile-menu__item"
+          :class="{ 'mobile-menu__item--active': route.path === link.to }"
+          @click="closeMenu"
+        >
+          {{ link.label }}
+        </router-link>
+      </nav>
+
+      <div v-if="state.user" class="mobile-menu__account">
+        <router-link to="/admin" class="mobile-menu__admin" @click="closeMenu">
+          <span class="account__avatar">{{ initials }}</span>
+          <span>
+            <strong>{{ state.user.name }}</strong>
+            <span class="mobile-menu__admin-label">Go to Admin →</span>
+          </span>
+        </router-link>
+        <button class="mobile-menu__logout" @click="handleLogout">
+          Log Out
+        </button>
+      </div>
+    </div>
   </header>
 </template>
 
 <style scoped>
 .navbar {
-  background: var(--surface);
+  background: var(--forest);
   position: sticky;
   top: 0;
   z-index: 20;
+  border-bottom: 3px solid var(--gold);
 }
 .navbar__inner {
   display: flex;
@@ -91,35 +124,25 @@ function handleLogout() {
   gap: 16px;
   height: 76px;
 }
-.navbar__pattern {
-  height: 5px;
-  background: repeating-linear-gradient(
-    45deg,
-    var(--brick) 0px,
-    var(--brick) 10px,
-    var(--turmeric) 10px,
-    var(--turmeric) 20px
-  );
-}
 
 .brand {
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-shrink: 0;
 }
 .brand__badge {
   width: 42px;
   height: 42px;
   flex-shrink: 0;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--brick), var(--brick-dark));
-  color: var(--rice);
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color: var(--forest);
   font-family: var(--font-display);
   font-size: 1.1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 3px 8px rgba(181, 69, 27, 0.35);
 }
 .brand__text {
   display: flex;
@@ -130,17 +153,17 @@ function handleLogout() {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 1.15rem;
-  color: var(--ink);
+  color: var(--rice);
 }
 .brand__tag {
   font-size: 0.65rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--ink-soft);
+  color: var(--gold);
 }
 
-.links {
+.links--desktop {
   display: flex;
   gap: 30px;
 }
@@ -150,7 +173,7 @@ function handleLogout() {
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--ink-soft);
+  color: rgba(246, 239, 225, 0.7);
   padding: 8px 2px;
 }
 .links__item::after {
@@ -160,7 +183,7 @@ function handleLogout() {
   right: 50%;
   bottom: 2px;
   height: 2px;
-  background: var(--brick);
+  background: var(--gold);
   transition:
     left 0.18s ease,
     right 0.18s ease;
@@ -171,10 +194,10 @@ function handleLogout() {
   right: 0;
 }
 .links__item--active {
-  color: var(--brick);
+  color: var(--gold);
 }
 
-.account {
+.account--desktop {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -184,20 +207,21 @@ function handleLogout() {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  background: var(--ink);
-  color: var(--rice);
+  background: var(--gold);
+  color: var(--forest);
   padding: 5px 11px;
   border-radius: 999px;
+  white-space: nowrap;
 }
 .admin-chip:hover {
-  background: var(--brick);
+  background: var(--gold-dark);
 }
 .account__avatar {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: var(--turmeric-soft);
-  color: var(--brick-dark);
+  background: var(--gold);
+  color: var(--forest);
   font-weight: 700;
   font-size: 0.78rem;
   display: flex;
@@ -208,58 +232,104 @@ function handleLogout() {
 .account__name {
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--ink-soft);
+  color: var(--rice);
   white-space: nowrap;
 }
 .account__logout {
   font-size: 0.76rem;
   font-weight: 700;
-  color: var(--brick);
-  border: 1.5px solid var(--brick);
+  color: var(--gold);
+  border: 1.5px solid var(--gold);
   border-radius: 999px;
   padding: 7px 14px;
   white-space: nowrap;
 }
 .account__logout:hover {
-  background: var(--brick);
-  color: var(--rice);
+  background: var(--gold);
+  color: var(--forest);
 }
 
 .menu-btn {
   display: none;
   flex-direction: column;
+  justify-content: center;
   gap: 4px;
   padding: 8px;
+  flex-shrink: 0;
 }
 .menu-btn span {
   width: 22px;
   height: 2px;
-  background: var(--ink);
+  background: var(--rice);
+}
+
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  background: var(--forest-soft);
+  padding: 12px 24px 20px;
+}
+.mobile-menu--open {
+  display: flex;
+}
+.mobile-menu__links {
+  display: flex;
+  flex-direction: column;
+}
+.mobile-menu__item {
+  padding: 14px 4px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: rgba(246, 239, 225, 0.8);
+  border-bottom: 1px solid rgba(224, 169, 58, 0.25);
+}
+.mobile-menu__item--active {
+  color: var(--gold);
+}
+.mobile-menu__account {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.mobile-menu__admin {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 4px;
+}
+.mobile-menu__admin strong {
+  display: block;
+  font-size: 0.92rem;
+  color: var(--rice);
+}
+.mobile-menu__admin-label {
+  font-size: 0.78rem;
+  color: var(--gold);
+  font-weight: 600;
+}
+.mobile-menu__logout {
+  width: 100%;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--gold);
+  color: var(--gold);
+  font-weight: 700;
+}
+.mobile-menu__logout:hover {
+  background: var(--gold);
+  color: var(--forest);
 }
 
 @media (max-width: 760px) {
-  .menu-btn {
-    display: flex;
-  }
-  .account__name {
-    display: none;
-  }
   .brand__tag {
     display: none;
   }
-  .links {
+  .links--desktop,
+  .account--desktop {
     display: none;
-    position: absolute;
-    top: 76px;
-    left: 0;
-    right: 0;
-    background: var(--surface);
-    border-bottom: 1px solid var(--line);
-    flex-direction: column;
-    padding: 12px 24px 20px;
-    gap: 14px;
   }
-  .links--open {
+  .menu-btn {
     display: flex;
   }
 }

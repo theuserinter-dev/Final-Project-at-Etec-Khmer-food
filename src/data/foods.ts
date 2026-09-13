@@ -2,8 +2,8 @@ import type { Food } from "../types";
 
 // Placeholder images — swap the `image` field for real photos later.
 const img = (label: string, tone: "brick" | "turmeric" | "leaf" = "brick") => {
-  const colors = { brick: "B5451B", turmeric: "C08A1E", leaf: "3F6B3B" };
-  return `https://placehold.co/600x450/${colors[tone]}/FFFCF6?font=roboto&text=${encodeURIComponent(label)}`;
+  const colors = { brick: "1B2E22", turmeric: "24402F", leaf: "141414" };
+  return `https://placehold.co/600x450/${colors[tone]}/E0A93A?font=roboto&text=${encodeURIComponent(label)}`;
 };
 
 export const foods: Food[] = [
@@ -41,7 +41,8 @@ export const foods: Food[] = [
     price: 3.5,
     description:
       "Grilled pork over broken rice, served with pickled vegetables and a light chicken broth.",
-    image: img("Bai Sach Chrouk"),
+    image:
+      "https://asianinspirations.com.au/wp-content/uploads/2023/07/BSC-7.jpg",
     defaultSpicy: "None",
     popular: true,
   },
@@ -56,6 +57,7 @@ export const foods: Food[] = [
     image:
       "https://commons.wikimedia.org/wiki/Special:FilePath/Kuyteav.jpg?width=600",
     defaultSpicy: "Mild",
+    popular: true,
   },
   {
     id: "samlor-machu-kroeung",
@@ -65,7 +67,7 @@ export const foods: Food[] = [
     price: 4.0,
     description:
       "Tangy herbal soup with beef, lemongrass, galangal and turmeric.",
-    image: img("Samlor Machu Kroeung"),
+    image: "https://vietasiatravel.com/uploads//Cambodia/cam-suisine.jpg",
     defaultSpicy: "Medium",
   },
   {
@@ -76,7 +78,8 @@ export const foods: Food[] = [
     price: 3.5,
     description:
       "Cambodia's oldest soup — mixed vegetables, green jackfruit and pork in a roasted-rice broth.",
-    image: img("Samlor Kor Ko"),
+    image:
+      " https://media-cdn.tripadvisor.com/media/photo-s/18/a4/36/da/samlor-korko-pork-and.jpg",
     defaultSpicy: "Mild",
   },
   {
@@ -87,7 +90,8 @@ export const foods: Food[] = [
     price: 3.5,
     description:
       "Short stir-fried rice noodles with pork, egg, bean sprouts and chives.",
-    image: img("Lort Cha"),
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNs1AoKI-HCmu-rIkOK1-koSKr1hS5QF1HmE-h67ZeE6FeyjWAMQwfUp4&s=10",
     defaultSpicy: "Mild",
   },
   {
@@ -98,7 +102,8 @@ export const foods: Food[] = [
     price: 4.5,
     description:
       "Yellow curry with chicken, sweet potato and coconut milk, eaten with fresh baguette.",
-    image: img("Khmer Chicken Curry"),
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXNsokxKF7w4-nH3dQYAwKp_WRvojlIfDdX_CabB0xgttpFL_int9B5eU&s=10",
     defaultSpicy: "Medium",
     popular: true,
   },
@@ -110,7 +115,8 @@ export const foods: Food[] = [
     price: 5.0,
     description:
       "Whole fried fish glazed in a tamarind sweet-and-sour sauce with vegetables.",
-    image: img("Sweet Sour Fish"),
+    image:
+      "https://media-cdn.tripadvisor.com/media/photo-s/1b/1d/7d/21/caption.jpg",
     defaultSpicy: "None",
   },
   {
@@ -122,7 +128,7 @@ export const foods: Food[] = [
     description:
       "Charcoal-grilled squid basted in garlic and lime, served with Kampot pepper sauce.",
     image:
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Grilled%20Squid.JPG?width=600",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrjLLCzC78EBREoYhHlPtFjtovFTKZcir4ElbiLx9jJM3EPqlvVWAOkjs&s=10",
     defaultSpicy: "Mild",
   },
   {
@@ -158,7 +164,8 @@ export const foods: Food[] = [
     price: 3.5,
     description:
       "Seared beef salad with lime dressing, mint, and roasted rice powder.",
-    image: img("Beef Salad", "leaf"),
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNMFr0bI4sBO9S6z7li3eZ71EMXZLdsVHMk_AGGXMaeBK6mq-uRpyu11g&s=10",
     defaultSpicy: "Medium",
   },
   {
@@ -169,7 +176,8 @@ export const foods: Food[] = [
     price: 1.75,
     description:
       "Layered grass-jelly dessert with coconut milk and palm sugar syrup over ice.",
-    image: img("Cha Houy Teuk", "turmeric"),
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfLp-n1LVGCFJ8IdgnFzDrn4IAFYtbvS4RU7Amfcgx7BeVO1AnuyfiNzA&s=10",
     defaultSpicy: "None",
   },
   {
@@ -179,7 +187,8 @@ export const foods: Food[] = [
     category: "Dessert",
     price: 1.5,
     description: "Sticky rice and banana steamed in banana leaf.",
-    image: img("Banana Sticky Rice", "turmeric"),
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGexGCggQNE_Q12NqJZDJdYz0JbquOfr9yydaTrAC5lQvERkrnYX_hCxE&s=10",
     defaultSpicy: "None",
   },
   {
@@ -190,7 +199,8 @@ export const foods: Food[] = [
     price: 1.25,
     description:
       "Pyramid-shaped steamed rice dumpling filled with sweet coconut and palm sugar.",
-    image: img("Num Kom", "turmeric"),
+    image:
+      "https://flavourfullygood.com/wp-content/uploads/2022/05/Cooked-Num-Kom-1-Flavourfully-Good.jpg",
     defaultSpicy: "None",
   },
   {
@@ -200,7 +210,8 @@ export const foods: Food[] = [
     category: "Dessert",
     price: 2.0,
     description: "Steamed egg custard baked inside a whole pumpkin.",
-    image: img("Pumpkin Custard", "turmeric"),
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJWNcrcFI80Hi_xiYPAVxn8glgvK4VX9SasqPaKV1RK1GmRHm7Xn4RdA8l&s=10",
     defaultSpicy: "None",
   },
   {
@@ -211,7 +222,8 @@ export const foods: Food[] = [
     price: 4.0,
     description:
       "Pork stir-fried with kroeung paste — lemongrass, galangal, turmeric and kaffir lime.",
-    image: img("Lemongrass Pork"),
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvpZ2ed5kMNwATz21OWFBJGt9IWv9fkcxJdH6twH8o4tGKwuXWtTrJhNde&s=10",
     defaultSpicy: "Medium",
   },
   {
@@ -234,7 +246,8 @@ export const foods: Food[] = [
     price: 4.5,
     description:
       "Whole freshwater fish grilled over charcoal, served with a tangy dipping sauce.",
-    image: img("Grilled Fish", "leaf"),
+    image:
+      " https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcnY2V3kvpsLc4AurpYekdnmie39xitCsVnZDSXoeme4HYebdOXl-zx9s&s=10",
     defaultSpicy: "None",
     popular: true,
   },
@@ -246,7 +259,7 @@ export const foods: Food[] = [
     price: 5.0,
     description:
       "Marinated beef skewers grilled and served with a green peppercorn dipping sauce.",
-    image: img("Grilled Beef", "leaf"),
+    image: "https://images.deliveryhero.io/image/fd-kh/LH/u01e-hero.jpg",
     defaultSpicy: "Mild",
   },
   {
@@ -257,7 +270,8 @@ export const foods: Food[] = [
     price: 3.25,
     description:
       "Dry-tossed noodle salad with vegetables, herbs and a tamarind dressing.",
-    image: img("Mee Kola"),
+    image:
+      "https://images.deliveryhero.io/image/fd-kh/products/719991.jpg?width=577.5&height=577.5",
     defaultSpicy: "Mild",
   },
   {
@@ -267,7 +281,8 @@ export const foods: Food[] = [
     category: "Soup",
     price: 3.75,
     description: "Rich fermented-fish soup with pork, eggplant and long beans.",
-    image: img("Samlor Prohok"),
+    image:
+      "https://camdelicious.wordpress.com/wp-content/uploads/2015/05/img_1006.jpg",
     defaultSpicy: "Medium",
   },
   {
@@ -278,7 +293,8 @@ export const foods: Food[] = [
     price: 2.25,
     description:
       "Comforting rice porridge with chicken, ginger and crispy shallots.",
-    image: img("Bobor Khmer"),
+    image:
+      "https://images.deliveryhero.io/image/global-menu-service/FP_KH/vendor/zhgn/product/7c21db93-3204-4de3-9e65-075e7ca97ff2.jpg?width=393.75&height=393.75",
     defaultSpicy: "None",
   },
   {
@@ -288,7 +304,8 @@ export const foods: Food[] = [
     category: "Dessert",
     price: 1.5,
     description: "Palm-sugar filled rice balls rolled in fresh grated coconut.",
-    image: img("Nom Plae Ai", "turmeric"),
+    image:
+      "https://kohsantepheap.tv/wp-content/uploads/2020/07/100968975_1160072887665549_4394437527394582528_n.jpg",
     defaultSpicy: "None",
   },
   {
@@ -299,7 +316,8 @@ export const foods: Food[] = [
     price: 2.75,
     description:
       "Water spinach stir-fried with garlic, chili and fermented soybean paste.",
-    image: img("Morning Glory", "leaf"),
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Ipomoea%20aquatica%20cooked.jpg?width=600",
     defaultSpicy: "Mild",
   },
   {
@@ -310,7 +328,8 @@ export const foods: Food[] = [
     price: 3.5,
     description:
       "Charcoal pork skewers marinated in coconut milk and turmeric.",
-    image: img("Pork Skewers", "leaf"),
+    image:
+      " https://kitchenconfidante.com/wp-content/uploads/2020/07/Grilled-Pork-Skewers-kitchenconfidante.com-8654-FEATURED-IMAGE.jpg",
     defaultSpicy: "Mild",
     popular: true,
   },
@@ -322,7 +341,8 @@ export const foods: Food[] = [
     price: 4.0,
     description:
       "Chicken stir-fried with fresh ginger, wood-ear mushroom and spring onion.",
-    image: img("Ginger Chicken"),
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjRir5u5ayfGnXRZSulj0_Xiouu3DcPZkY0j1PIVCO4fAdl0plrvgyqsqL&s=10",
     defaultSpicy: "Mild",
   },
   {
@@ -333,7 +353,8 @@ export const foods: Food[] = [
     price: 5.0,
     description:
       "Simmered fish in a tangy turmeric and lemongrass broth with vegetables.",
-    image: img("Fish Turmeric Broth"),
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNSKeWZt4fAvX-vX2TpWgd6PHznu1qamUqeCxIHjcyfPtJBeNMLg24kgU8&s=10",
     defaultSpicy: "Medium",
   },
   {
@@ -343,7 +364,8 @@ export const foods: Food[] = [
     category: "Noodles",
     price: 3.25,
     description: "Stir-fried egg noodles with pork, egg and mixed vegetables.",
-    image: img("Mee Cha"),
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCtGpV-BU1SvtfdJ69TyoDrKDIWJhrssx23aTz4noQw4BysEhg5JxeUN9d&s=10",
     defaultSpicy: "Mild",
   },
   {
@@ -354,7 +376,8 @@ export const foods: Food[] = [
     price: 1.5,
     description:
       "Freshly pressed sugarcane juice over ice with a splash of lime.",
-    image: img("Sugarcane Juice", "turmeric"),
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9a9e9KjbzdW9yqqLus9ksRvGqdvC200u62L0nrrsMK2nTkIxuPiRUWxVK&s=10",
     defaultSpicy: "None",
   },
   {
@@ -365,7 +388,8 @@ export const foods: Food[] = [
     price: 2.0,
     description:
       "Chilled coconut water served straight from the young coconut.",
-    image: img("Coconut Water", "turmeric"),
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeMAHQU565iw1yTRadUUOZMznI_uUmrBt5aAIrVGyA6eE7uAAra9s_OtY&s=10",
     defaultSpicy: "None",
   },
   {
@@ -375,7 +399,8 @@ export const foods: Food[] = [
     category: "Snack",
     price: 2.0,
     description: "Sticky rice, coconut and black beans roasted inside bamboo.",
-    image: img("Kralan", "turmeric"),
+    image:
+      " https://ak-d.tripcdn.com/images/1mi03224x99vna8lb9FE5_R_600_400_R5_Q90.png?proc=source/trip",
     defaultSpicy: "None",
     popular: true,
   },
@@ -386,7 +411,8 @@ export const foods: Food[] = [
     category: "Snack",
     price: 1.75,
     description: "Crispy fried banana fritters, best eaten warm.",
-    image: img("Fried Banana", "turmeric"),
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiaKJWH6IUEAcqamwKPELj1WX2Tp_SSt4SrZLe3eS57dqdcjZNPbE5Y6ry&s=10",
     defaultSpicy: "None",
   },
   {
@@ -397,7 +423,8 @@ export const foods: Food[] = [
     price: 2.25,
     description:
       "Cylindrical sticky rice cake with pork and mung bean, wrapped in banana leaf.",
-    image: img("Ansom Chrouk", "turmeric"),
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJuz9m59daxwLG2ht-DyWduUPjST9arIuQxzAXAK-dHtRZ_zGcKF_Ta8SB&s=10",
     defaultSpicy: "None",
   },
   {
@@ -408,7 +435,8 @@ export const foods: Food[] = [
     price: 1.75,
     description:
       "Strong dark-roast coffee over ice with sweetened condensed milk.",
-    image: img("Khmer Iced Coffee", "turmeric"),
+    image:
+      "https://domnor.com/admin/images/product/2023-05-22-05-51-33_306_1.jpg?v=1",
     defaultSpicy: "None",
   },
 ];

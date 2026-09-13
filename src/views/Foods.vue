@@ -1,29 +1,32 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import { foods, categories } from '../data/foods'
-import FoodCard from '../components/FoodCard.vue'
-import SearchBar from '../components/SearchBar.vue'
-import CategoryFilter from '../components/CategoryFilter.vue'
+import { computed, ref } from "vue";
+import { foods, categories } from "../data/foods";
+import FoodCard from "../components/FoodCard.vue";
+import SearchBar from "../components/SearchBar.vue";
+import CategoryFilter from "../components/CategoryFilter.vue";
 
-const query = ref('')
-const activeCategory = ref('All')
+const query = ref("");
+const activeCategory = ref("All");
 
 const filtered = computed(() => {
-  return foods.filter(f => {
-    const matchesCategory = activeCategory.value === 'All' || f.category === activeCategory.value
+  return foods.filter((f) => {
+    const matchesCategory =
+      activeCategory.value === "All" || f.category === activeCategory.value;
     const matchesQuery =
-      query.value.trim() === '' ||
+      query.value.trim() === "" ||
       f.name.toLowerCase().includes(query.value.toLowerCase()) ||
-      f.khmerName.includes(query.value)
-    return matchesCategory && matchesQuery
-  })
-})
+      f.khmerName.includes(query.value);
+    return matchesCategory && matchesQuery;
+  });
+});
 </script>
 
 <template>
   <div class="container page">
     <h1>Full Menu</h1>
-    <p class="page__sub">{{ foods.length }} Khmer dishes — filter by category or search by name.</p>
+    <p class="page__sub">
+      {{ foods.length }} Khmer dishes — filter by category or search by name.
+    </p>
 
     <div class="controls">
       <SearchBar v-model="query" />
@@ -40,8 +43,12 @@ const filtered = computed(() => {
 </template>
 
 <style scoped>
-.page { padding: 48px 0 80px; }
-.page__sub { margin-bottom: 32px; }
+.page {
+  padding: 48px 0 80px;
+}
+.page__sub {
+  margin-bottom: 32px;
+}
 .controls {
   display: flex;
   flex-direction: column;
@@ -52,6 +59,13 @@ const filtered = computed(() => {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
 }
 .empty {
   padding: 40px 0;

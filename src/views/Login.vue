@@ -40,7 +40,7 @@ function submit() {
           id="login-name"
           v-model="form.name"
           type="text"
-          placeholder="Sok Dara"
+          placeholder="Enter your username"
           @keyup.enter="submit"
         />
         <span v-if="errors.name" class="error-text">{{ errors.name }}</span>
@@ -52,7 +52,7 @@ function submit() {
           id="login-email"
           v-model="form.email"
           type="email"
-          placeholder="sokdara@example.com"
+          placeholder="Enter your gmail"
           @keyup.enter="submit"
         />
         <span v-if="errors.email" class="error-text">{{ errors.email }}</span>
